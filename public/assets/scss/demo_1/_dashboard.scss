@@ -1,0 +1,100 @@
+.btn-filter-custom {
+    background: #3D41D7;
+    color: #ffffff;
+    border-radius: 0.5em;
+
+    &:hover{
+        color: #ffffff;
+        background: #595eee;
+    }
+}
+
+.text-year-custom {
+    position: absolute;
+    margin-top: 20px;
+    right: 2em;
+}
+
+.head-table {
+    background-color: #F4F2FF;
+}
+
+.btn-custom {
+    background-color: #e5e9f9;
+    color: #415af1;
+    border: 0;
+    border-radius: 8px;
+    font-size: 14px;
+    padding: 8px 10px;
+    font-weight: 1000;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+
+    &:hover{
+        background-color: #d5ddfd;
+    }
+}
+
+#sales-statistics-legend {
+    .chartjs-legend {
+        margin-top: 20px;
+        margin-right: 20px;
+
+        ul {
+            li {
+                color: $body-text-color;
+
+                span {
+                    width: 20px;
+                    height: 3px;
+                    border-radius: 0px;
+                }
+            }
+        }
+    }
+}
+
+#net-profit-legend {
+    .chartjs-legend {
+        li {
+            font-weight: 500;
+            color: $body-text-color;
+        }
+    }
+}
+
+.average-price-card {
+    .card {
+        background: $card-accent-color;
+    }
+
+    h3 {
+        margin-bottom: 0;
+    }
+
+    .icon-holder {
+        border-radius: 5px;
+        border: 1px solid $iconholder-primary-border-color;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $iconholder-primary-bg;
+        color: $iconholder-primary-color;
+        font-size: 20px;
+
+        i {
+            line-height: 1;
+        }
+    }
+}
+
+#dashboard-vmap {
+    height: 161px;
+    width: 100%;
+
+    .jvectormap-zoomin,
+    .jvectormap-zoomout {
+        display: none;
+    }
+}
