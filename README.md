@@ -78,6 +78,4 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 =======
-# ipos-system
-Aplikasi Point Of Sale System Laravel 7
->>>>>>> b33f1f1b3174dc29c64a4b8ac3bb324f26e4033e
+
