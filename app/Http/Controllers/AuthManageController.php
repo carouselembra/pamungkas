@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Auth;
 use Session;
-use App\User;
 use Illuminate\Http\Request;
 
 class AuthManageController extends Controller

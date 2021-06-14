@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Market extends Model
+class Supply_system extends Model
 {
     // Initialize
     protected $fillable = [
-        'nama_toko', 'no_telp', 'alamat',
+        'status',
     ];
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Acces;
+use App\Models\Acces;
 use Illuminate\Http\Request;
 
 class AccessManageController extends Controller

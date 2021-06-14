@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Session;
-use App\Acces;
-use App\Supply;
-use App\Product;
-use App\Transaction;
-use App\Supply_system;
+use App\Models\Acces;
+use App\Models\Supply;
+use App\Models\Product;
+use App\Models\Transaction;
+use App\Models\Supply_system;
 use App\Imports\ProductImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Session;
-use App\User;
-use App\Acces;
-use App\Satker;
+use App\Models\User;
+use App\Models\Acces;
+use App\Models\Satker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;

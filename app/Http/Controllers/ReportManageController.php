@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use PDF;
 use Auth;
 use Carbon\Carbon;
-use App\User;
-use App\Acces;
-use App\Market;
-use App\Supply;
-use App\Transaction;
+use App\Models\User;
+use App\Models\Acces;
+use App\Models\Market;
+use App\Models\Supply;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class ReportManageController extends Controller

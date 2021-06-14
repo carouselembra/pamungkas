@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use PDF;
 use Auth;
 use Session;
-use App\Acces;
-use App\Market;
-use App\Product;
-use App\Activity;
-use App\Transaction;
-use App\Supply_system;
+use App\Models\Acces;
+use App\Models\Market;
+use App\Models\Product;
+use App\Models\Activity;
+use App\Models\Transaction;
+use App\Models\Supply_system;
 use Illuminate\Http\Request;
 
 class TransactionManageController extends Controller

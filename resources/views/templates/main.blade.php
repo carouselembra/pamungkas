@@ -42,12 +42,12 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
               @php
-              $cek_supply_system = \App\Supply_system::first();
-              $jumlah_notif = \App\Product::where('stok', '<', 10)
+              $cek_supply_system = \App\Models\Supply_system::first();
+              $jumlah_notif = \App\Models\Product::where('stok', '<', 10)
               ->count();
-              $notifications = \App\Product::where('stok', '<', 10)
+              $notifications = \App\Models\Product::where('stok', '<', 10)
               ->get();
-              $notification = \App\Product::where('stok', '<', 10)
+              $notification = \App\Models\Product::where('stok', '<', 10)
               ->take(3)
               ->get();
               @endphp
@@ -130,7 +130,7 @@
               </a>
             </li>
             @php
-            $access = \App\Acces::where('user', auth()->user()->id)
+            $access = \App\Models\Acces::where('user', auth()->user()->id)
             ->first();
             @endphp
             @if($access->penilaian == 1)

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Session;
-use App\User;
-use App\Activity;
+use App\Models\User;
+use App\Models\Activity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 

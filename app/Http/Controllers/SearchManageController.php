@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Auth;
 use Carbon\Carbon;
 use App\User;
-use App\Acces;
-use App\Supply;
-use App\Product;
-use App\Activity;
-use App\Transaction;
+use App\Models\Acces;
+use App\Models\Supply;
+use App\Models\Product;
+use App\Models\Activity;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class SearchManageController extends Controller

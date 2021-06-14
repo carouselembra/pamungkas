@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\JawabanStrukturProses;
-use App\Mapping_responden;
-use App\RefFormSKriteria;
-use App\RefFormSUnsur;
-use App\Satker;
-use App\User;
-use App\Tipe_kuesioner;
+use App\Models\JawabanStrukturProses;
+use App\Models\Mapping_responden;
+use App\Models\RefFormSKriteria;
+use App\Models\RefFormSUnsur;
+use App\Models\Satker;
+use App\Models\User;
+use App\Models\Tipe_kuesioner;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

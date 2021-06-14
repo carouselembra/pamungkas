@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Session;
 use Carbon\Carbon;
-use App\Market;
-use App\Transaction;
+use App\Models\Market;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class ViewManageController extends Controller
