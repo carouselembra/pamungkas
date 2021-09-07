@@ -149,23 +149,6 @@ class StrukturProsesController extends Controller
            
         }
 
-        // $data = [];
-        // foreach($req->kriteria_id as $kriteria){
-        //     $data[] = [
-        //         'tahun' => $tahun_now,
-        //         'satker_id' => $user_satker,
-        //         'users_id' => $user_login,
-        //         'unsur_id' => $req->unsur_id[$kriteria],
-        //         'sub_unsur_id' => $req->sub_unsur_id[$kriteria],
-        //         'parameter_id' => $req->parameter_id[$kriteria],
-        //         'kriteria_id' => $req->kriteria_id[$kriteria],
-        //         'jawaban' => $req->jawaban[$kriteria],
-        //         'mapping_id' => $req->mapping_id[$kriteria],
-        //         'tipe_kuesioner' => $req->tipe_kuesioner[$kriteria],
-        //     ];
-
-        // }
-        // JawabanStrukturProses::insert($data);
         Session::flash('berhasil_input', 'Keusioner berhasil disimpan');
         
         return redirect('/struktur/kuesioner');

@@ -135,7 +135,7 @@
             @endphp
             @if($access->penilaian == 1)
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/penilaian') }}">
+              <a class="nav-link" href="{{ route('penetapan') }}">
               <div>
                 <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
                 <span class="menu-title">Penetapan Tujuan</span>

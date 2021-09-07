@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/main/style.css') }}">
     <link rel="shortcut icon" href="{{ asset('icons/favicon.png') }}"/>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    
     @yield('css')
     <!-- End-CSS -->
 
@@ -135,7 +136,7 @@
             @endphp
             @if($access->penilaian == 1)
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/penilaian') }}">
+              <a class="nav-link" href="{{ route('penetapan') }}">
               <div>
                 <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
                 <span class="menu-title">Penetapan Tujuan</span>

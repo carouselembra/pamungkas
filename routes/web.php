@@ -35,11 +35,21 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::post('/struktur/kuesioner/create','StrukturProsesController@createKuesioner')->name('struktur.kuesioner')->name('struktur.kuesioner.create');
 
 
-	// > Struktur & Proses
-	Route::get('/penilaian','PenilaianController@viewPenilaian');
+	// > Penetapan Tujuan
+	Route::get('/penetapan','PenetapanController@viewPenetapan')->name('penetapan');
+	Route::get('/penetapan/penilaian','PenetapanController@penilaianPenetapan')->name('penetapan.penilaian');
+	Route::post('/penetapan/addsasaran','PenetapanController@addSasaran')->name('penetapan.addsasaran');
+	Route::post('/penetapan/addoutput/','PenetapanController@addOutput')->name('penetapan.addoutput');
+	Route::get('/penetapan/addoutput/{sasaran_id}','PenetapanController@getSasaran')->name('penetapan.getsasaran');
+	Route::get('/penetapan/editoutput/{id}','PenetapanController@getOutput')->name('penetapan.getoutput');
+	Route::post('/penetapan/editoutput','PenetapanController@editOutput')->name('penetapan.editoutput');
+	Route::get('/penetapan/editsasaran/{sasaran_id}','PenetapanController@getSasaran');
+	Route::post('/penetapan/editsasaran','PenetapanController@editSasaran')->name('penetapan.editsasaran');
+	Route::delete('/penetapan/deleteoutput','PenetapanController@deleteOutput')->name('penetapan.deleteoutput');
+	Route::delete('/penetapan/deletesasaran','PenetapanController@deleteSasaran')->name('penetapan.deletesasaran');
 
 
-	// > Struktur & Proses
+	// > Pencapaian Tujuan
 	Route::get('/tujuan','TujuanController@viewTujuan');
 
 	
