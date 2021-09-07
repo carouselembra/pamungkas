@@ -45,7 +45,6 @@
                         
                         <h6 class="mt-1 ml-3">{{$parameter->kd_parameter}}. {{$parameter->uraian_parameter}}</h6>
                         
-                       
                         @foreach($parameter->kriteria as $kriteria)
                         <input type="hidden" name="jawaban[{{$kriteria->id}}]" value="">
                         <input type="hidden" name="unsur_id[{{$kriteria->id}}]" value="{{$data->id}}">
