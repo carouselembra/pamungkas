@@ -54,31 +54,88 @@
                     </thead>
                     <tbody>
                       <?php 
-                      $number = 1
+                      $number = 1;
+                      $m = "mb-3";
                       ?>
                       @foreach($data as $data)
                       <tr>
-                        
                         <td class="align-top col-4">
-                          <a href="" class="btn-edit-sasaran" data-toggle="modal" data-target="#editSasaran" data-edit="{{ $data->id }}"><h6 class="mb-2">Sasaran {{ $number }}</h6></a>
-                          <div style="white-space: normal;">{{ $data->sasaran }}</div>
+                          <div class="d-flex align-items-start flex-column" style="height: 100%;">
+                            <div class="mb-auto">
+                              <h6 class="mb-2">Sasaran {{ $number }}</h6>
+                              <div class="mb-4" style="white-space: normal;">{{ $data->sasaran }}</div>
+                            </div>
+                            <div class="d-flex justify-content-between {{ $m }}">
+                              <div class="p-0 col-6 mr-4">
+                                <div class="ml-0" style="white-space: normal;"><strong>Apakah Sasaran {{ $number }} Sudah Tepat?</strong></div>
+                                <div class="form-radio ml-1 mt-2 p-0">
+                                  <label class="form-check-label">
+                                  <input required type="radio" class="form-check-input" name="jawaban[]" id="jawaban[]" value="1"> Ya <i class="input-helper"></i></label>
+                                </div>
+                                <div class="form-radio ml-1 mt-2 p-0">
+                                  <label class="form-check-label">
+                                  <input required type="radio" class="form-check-input" name="jawaban[]" id="jawaban[]" value="0"> Tidak <i class="input-helper"></i></label>
+                                </div>
+                              </div>
+                              <div class="p-0 col-6">
+                                <div class="ml-0" style="white-space: normal;"><strong>Apakah Sasaran {{ $number }} Sudah Baik?</strong></div>
+                                <div class="form-radio ml-1 mt-2 p-0">
+                                  <label class="form-check-label">
+                                  <input required type="radio" class="form-check-input" name="jawaban[]" id="jawaban[]" value="1"> Ya <i class="input-helper"></i></label>
+                                </div>
+                                <div class="form-radio ml-1 mt-2 p-0">
+                                  <label class="form-check-label">
+                                  <input required type="radio" class="form-check-input" name="jawaban[]" id="jawaban[]" value="0"> Tidak <i class="input-helper"></i></label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </td>
                         <?php 
                         $number_ikk = 1
                         ?>
                         @foreach($data->ikkTarget as $data_ikk)
                         @if ($number_ikk <> 1)                        
-                        <tr>
-                          
+                        <tr>     
                           <td class="align-top col-4 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}"></td>
                         @endif
                           <td class="align-top col-4 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
-                            <h6 class="mb-2">IKK {{ $number_ikk }}</h6>
-                            <div style="white-space: normal;">{{ $data_ikk->ikk }}</div>
+                            <div class="d-flex align-items-start flex-column {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}" style="height: 100%;">
+                              <div class="mb-auto">
+                                <h6 class="mb-2">IKK {{ $number_ikk }}</h6>
+                                <div class="mb-4" style="white-space: normal;">{{ $data_ikk->ikk }}</div>
+                              </div>
+                              <div class="p-0 {{ $m }}">
+                                <div class="ml-0" style="white-space: normal;"><strong>Apakah IKK {{ $number_ikk }} Sudah Tepat?</strong></div>
+                                <div class="form-radio ml-1 mt-2 p-0">
+                                  <label class="form-check-label">
+                                  <input required type="radio" class="form-check-input" name="jawaban[]" id="jawaban[]" value="1"> Ya <i class="input-helper"></i></label>
+                                </div>
+                                <div class="form-radio ml-1 mt-2 p-0">
+                                  <label class="form-check-label">
+                                  <input required type="radio" class="form-check-input" name="jawaban[]" id="jawaban[]" value="0"> Tidak <i class="input-helper"></i></label>
+                                </div>
+                              </div>
+                            </div>                              
                           </td>
                           <td class="align-top col-2 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
-                            <h6 class="mb-2">Target {{ $number_ikk }}</h6>
-                            <div style="white-space: normal;">{{ $data_ikk->target }} {{ $data_ikk->satuan }}</div>
+                            <div class="d-flex align-items-start flex-column" style="height: 100%;">
+                              <div class="mb-auto">
+                                <h6 class="mb-2">Target {{ $number_ikk }}</h6>
+                                <div class="mb-4" style="white-space: normal;">{{ $data_ikk->target }} {{ $data_ikk->satuan }}</div>
+                              </div>
+                              <div class="p-0 {{ $m }}">
+                                <div class="ml-0" style="white-space: normal;"><strong>Apakah Target {{ $number_ikk }} Sudah Tepat?</strong></div>
+                                <div class="form-radio ml-1 mt-2 p-0">
+                                  <label class="form-check-label">
+                                  <input required type="radio" class="form-check-input" name="jawaban[]" id="jawaban[]" value="1"> Ya <i class="input-helper"></i></label>
+                                </div>
+                                <div class="form-radio ml-1 mt-2 p-0">
+                                  <label class="form-check-label">
+                                  <input required type="radio" class="form-check-input" name="jawaban[]" id="jawaban[]" value="0"> Tidak <i class="input-helper"></i></label>
+                                </div>
+                              </div>
+                            </div>
                           </td>
                           
                         @if ($number_ikk <> 1)
