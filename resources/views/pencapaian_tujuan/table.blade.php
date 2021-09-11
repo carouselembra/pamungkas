@@ -58,4 +58,4 @@ $number_ikk ++;
 <?php 
 $number ++;
 ?>
-@endforeach
+@endforeach  

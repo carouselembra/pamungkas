@@ -13,19 +13,19 @@
     active
 @endsection
 @section('page-title')
-    Penetapan Tujuan
+    Pencapaian Tujuan
 @endsection
 @section('content')
 <div class="row page-title-header">
     <div class="col-12">
         <ul class="nav nav-custom nav-justified mb-2 justify-content-center">
             <li class="nav-item">
-                <a href="{{ route('penetapan') }}" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2 active"> 
+                <a href="{{ route('pencapaian') }}" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2 active"> 
                     <span class="d-none d-sm-inline">Input Data</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('penetapan.penilaian') }}" class="nav-link rounded-0 pt-2 pb-2">
+                <a href="{{ route('pencapaian.penilaian') }}" class="nav-link rounded-0 pt-2 pb-2">
                     <span class="d-none d-sm-inline">Penilaian</span>
                 </a>
             </li>
@@ -51,7 +51,7 @@
         <div class="modal fade" id="tambahSasaran" tabindex="-1" role="dialog" aria-labelledby="tambahSasaranLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <form name="tambah_sasaran" action="{{ route('penetapan.addsasaran') }}" method="POST">
+              <form name="tambah_sasaran" action="{{ route('pencapaian.addsasaran') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                   <h5 class="modal-title" id="tambahRespondenLabel">Tambah Sasaran</h5>
@@ -105,7 +105,7 @@
         <div class="modal fade" id="editSasaran" tabindex="-1" role="dialog" aria-labelledby="editSasaranLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <form name="edit_sasaran" action="{{ route('penetapan.editsasaran') }}" method="POST">
+              <form name="edit_sasaran" action="{{ route('pencapaian.editsasaran') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                   <h5 class="modal-title" id="tambahRespondenLabel">Edit Sasaran</h5>
@@ -137,7 +137,7 @@
         <div class="modal fade" id="tambahOutput" tabindex="-1" role="dialog" aria-labelledby="tambahOutputLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <form name="tambah_output" action="{{ route('penetapan.addoutput') }}" method="POST">
+              <form name="tambah_output" action="{{ route('pencapaian.addoutput') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                   <h5 class="modal-title" id="tambahRespondenLabel">Tambah IKK dan Target Output</h5>
@@ -182,7 +182,7 @@
         <div class="modal fade" id="editOutput" tabindex="-1" role="dialog" aria-labelledby="editOutputLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
-              <form name="edit_output" action="{{ route('penetapan.editoutput') }}" method="POST">
+              <form name="edit_output" action="{{ route('pencapaian.editoutput') }}" method="POST">
                 @csrf
                 <div class="modal-header">
                   <h5 class="modal-title" id="tambahRespondenLabel">Edit IKK dan Target Output</h5>
@@ -307,16 +307,16 @@
                     </tbody>
                   </table>
                   @if ($check_data == 0)
-                      <div class="alert mt-4 col-12 b-radius alert-warning text-center">
-                          <h5>Tidak ada data</h5>
-                      </div>
+                  <div class="alert mt-4 col-12 b-radius alert-warning text-center">
+                      <h5>Tidak ada data</h5>
+                  </div>
                   @endif
             </div>
         </div>
         </div>
     </div>
     <div class="d-flex col-12 justify-content-end" style="margin-top: 1.7em">
-      <a href="{{ route('penetapan.penilaian') }}" type="button" class="btn btn-filter-custom" style="margin-right: 0.8em">Penilaian <i class="fa fa-chevron-right"></i></a>
+      <a href="{{ route('pencapaian.penilaian') }}" type="button" class="btn btn-filter-custom" style="margin-right: 0.8em">Penilaian <i class="fa fa-chevron-right"></i></a>
     </div>
 </div>
 
@@ -377,7 +377,7 @@ $(document).on('click', '.btn-output', function(){
   var data_sasaran = $(this).data('sasaran');
   $.ajax({
     method: "GET",
-    url: "{{ url('/penetapan/addoutput') }}/" + data_sasaran,
+    url: "{{ url('/pencapaian/addoutput') }}/" + data_sasaran,
     success:function(response)
     {
       $('input[name=sasaran_id]').val(response.data.id);
@@ -393,7 +393,7 @@ $(document).on('click', '.btn-edit-output', function(){
   var data_edit = $(this).data('edit');
   $.ajax({
     method: "GET",
-    url: "{{ url('/penetapan/editoutput') }}/" + data_edit,
+    url: "{{ url('/pencapaian/editoutput') }}/" + data_edit,
     success:function(response)
     {
     
@@ -413,7 +413,7 @@ $(document).on('click', '.btn-edit-sasaran', function(){
   var data_edit = $(this).data('edit');
   $.ajax({
     method: "GET",
-    url: "{{ url('/penetapan/editsasaran') }}/" + data_edit,
+    url: "{{ url('/pencapaian/editsasaran') }}/" + data_edit,
     success:function(response)
     {
       console.log(response)
@@ -440,7 +440,7 @@ $(document).on('click', '.btn-delete', function(e){
     if (willDelete) {
       
       $.ajax({
-        url:'{{ route("penetapan.deleteoutput") }}',
+        url:'{{ route("pencapaian.deleteoutput") }}',
         type:'DELETE',
         data:{
           ids:data_delete,
@@ -487,7 +487,7 @@ $(document).on('click', '#deleteAllSelectedSasaran', function(e){
     .then((willDelete) => {
       if (willDelete) {
         $.ajax({
-          url:'{{ route("penetapan.deletesasaran") }}',
+          url:'{{ route("pencapaian.deletesasaran") }}',
           type:'DELETE',
           data:{
             ids:allids,

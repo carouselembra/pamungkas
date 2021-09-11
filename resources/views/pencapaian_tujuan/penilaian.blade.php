@@ -13,19 +13,19 @@
     active
 @endsection
 @section('page-title')
-    Penetapan Tujuan
+    Pencapaian Tujuan
 @endsection
 @section('content')
 <div class="row page-title-header">
     <div class="col-12">
         <ul class="nav nav-custom nav-justified mb-2 justify-content-center">
             <li class="nav-item">
-                <a href="{{ route('penetapan') }}"  class="nav-link rounded-0 pt-2 pb-2"> 
+                <a href="{{ route('pencapaian') }}"  class="nav-link rounded-0 pt-2 pb-2"> 
                     <span class="d-none d-sm-inline">Input Data</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ route('penetapan.penilaian') }}" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2 active">
+                <a href="{{ route('pencapaian.penilaian') }}" data-bs-toggle="tab" data-toggle="tab" class="nav-link rounded-0 pt-2 pb-2 active">
                     <span class="d-none d-sm-inline">Penilaian</span>
                 </a>
             </li>
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-  <form method="POST" action="{{ route('penetapan.penilaian.create') }}" name="create_penilaian_penetapan_tujuan" enctype="multipart/form-data">
+  <form method="POST" action="{{ route('pencapaian.penilaian.create') }}" name="create_penilaian_pencapaian_tujuan" enctype="multipart/form-data">
     @csrf
     @if (auth()->user()->role == 'superadmin' || auth()->user()->role == 'admin')
     
@@ -223,7 +223,7 @@ $(document).on('click', '.btn-output', function(){
   var data_sasaran = $(this).data('sasaran');
   $.ajax({
     method: "GET",
-    url: "{{ url('/penetapan/addoutput') }}/" + data_sasaran,
+    url: "{{ url('/pencapaian/addoutput') }}/" + data_sasaran,
     success:function(response)
     {
       $('input[name=sasaran_id]').val(response.data.id);
@@ -239,7 +239,7 @@ $(document).on('click', '.btn-edit-output', function(){
   var data_edit = $(this).data('edit');
   $.ajax({
     method: "GET",
-    url: "{{ url('/penetapan/editoutput') }}/" + data_edit,
+    url: "{{ url('/pencapaian/editoutput') }}/" + data_edit,
     success:function(response)
     {
     
@@ -259,7 +259,7 @@ $(document).on('click', '.btn-edit-sasaran', function(){
   var data_edit = $(this).data('edit');
   $.ajax({
     method: "GET",
-    url: "{{ url('/penetapan/editsasaran') }}/" + data_edit,
+    url: "{{ url('/pencapaian/editsasaran') }}/" + data_edit,
     success:function(response)
     {
       console.log(response)
@@ -286,7 +286,7 @@ $(document).on('click', '.btn-delete', function(e){
     if (willDelete) {
       
       $.ajax({
-        url:'{{ route("penetapan.deleteoutput") }}',
+        url:'{{ route("pencapaian.deleteoutput") }}',
         type:'DELETE',
         data:{
           ids:data_delete,
@@ -333,7 +333,7 @@ $(document).on('click', '#deleteAllSelectedSasaran', function(e){
     .then((willDelete) => {
       if (willDelete) {
         $.ajax({
-          url:'{{ route("penetapan.deletesasaran") }}',
+          url:'{{ route("pencapaian.deletesasaran") }}',
           type:'DELETE',
           data:{
             ids:allids,

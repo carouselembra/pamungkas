@@ -13,4 +13,9 @@ class IkkTarget extends Model
     {
         return $this->belongsTo(Sasaran::class,"sasaran_id");
     }
+
+    public function jawabanIkkTarget()
+    {
+        return $this->hasOne(JawabanOutput::class, 'ikk_target_id','id');
+    }
 }

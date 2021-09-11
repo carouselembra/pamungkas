@@ -108,34 +108,40 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php $number = 1 ?>
-                      @foreach ($responden as $responden)
+                      @foreach ($respondens as $key => $responden)
                       <tr>
-                        <td> {{$number}} </td>
-                        <td class="py-1">
+                        <td class="col-1"> {{$respondens->firstItem() + $key}} </td>
+                        <td class="py-1 col-2">
                           <img src="{{ asset('pictures/' . $responden->user->foto) }}" alt="image">
                         </td>
-                        <td>{{$responden->user->nama}}</td>
-                        <td>
+                        <td class="col-3" style="white-space: normal;">{{$responden->user->nama}}</td>
+                        <td class="col-2" style="white-space: normal;">
                           {{$responden->user->email}}
                         </td>
-                        <td style="
-                        display:inline-block;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        max-width: 15em;">{{$responden->kuesioner->tipe_kuesioner}} - {{$responden->kuesioner->uraian_tipe_kuesioner}}</td>
+                        <td class="col-4">
+                          <div class="row">
+                            <p class="col-1 m-0">{{$responden->kuesioner->tipe_kuesioner}} - </p>
+                            <p class="col-11 m-0" style="white-space: normal;">{{$responden->kuesioner->uraian_tipe_kuesioner}}</p>
+                          </div>
+                        </td>
                       </tr>
-                      <?php $number++ ?>
                       @endforeach
+                      
                     </tbody>
                   </table>
             </div>
+            
         </div>
         </div>
     </div>
-    <div class="d-flex col-12 justify-content-end" style="margin-top: 1.7em">
+    
+    <div class="d-flex col-12 justify-content-between" style="margin-top: 1.7em">
+      <div>
+        {{ $respondens->links('vendor.pagination.simple-bootstrap-4') }}
+      </div>
+      <div>
       <a href="{{ url('/struktur/kuesioner') }}" type="button" class="btn btn-filter-custom" style="margin-right: 0.8em">Penilaian <i class="fa fa-chevron-right"></i></a>
+      </div>
     </div>
 </div>
 

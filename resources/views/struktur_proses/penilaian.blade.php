@@ -29,6 +29,11 @@
 
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+        @if (count($mappings) == 0)
+          <div class="alert m-2 b-radius alert-warning text-center">
+            <h5>Maaf kamu tidak memiliki kewenangan untuk menggunakan menu ini!</h5>
+          </div>
+        @endif
         <div class="card b-radius card-noborder">
           @foreach ($mappings as $mapping)
           <div class="card-header p-3">

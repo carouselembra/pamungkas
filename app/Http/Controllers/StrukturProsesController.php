@@ -26,18 +26,18 @@ class StrukturProsesController extends Controller
         
         if($role_login=="superadmin"){
             $users = User::where('role','responden')->orderBy('nama', 'asc')->get();
-            $responden = Mapping_responden::with('user','kuesioner')->orderBy('users_id','asc')->orderBy('kuesioner_id','asc')->get();
+            $responden = Mapping_responden::with('user','kuesioner')->orderBy('users_id','asc')->orderBy('kuesioner_id','asc')->simplePaginate(10);
         }
         elseif($role_login=="admin"){
             $users = User::where('role','responden')->where('id_satker',$satker_login)->orderBy('nama', 'asc')->get();
-            $responden = Mapping_responden::where('satker_id',$satker_login)->with('user','kuesioner')->orderBy('users_id','asc')->orderBy('kuesioner_id','asc')->get();
+            $responden = Mapping_responden::where('satker_id',$satker_login)->with('user','kuesioner')->orderBy('users_id','asc')->orderBy('kuesioner_id','asc')->simplePaginate(10);
         }else{
             $users = User::where('role','responden')->where('id_satker',$satker_login)->orderBy('nama', 'asc')->get();
-            $responden = Mapping_responden::where('satker_id',$satker_login)->where('users_id',$id_login)->with('user','kuesioner')->orderBy('users_id','asc')->orderBy('kuesioner_id','asc')->get();
+            $responden = Mapping_responden::where('satker_id',$satker_login)->where('users_id',$id_login)->with('user','kuesioner')->orderBy('users_id','asc')->orderBy('kuesioner_id','asc')->simplePaginate(10);
         }
 
  
-        return view('struktur_proses.struktur',['users'=>$users,'tipe_kuesioner'=>$tipe_kuesioner, 'responden'=>$responden, 'satkers' => $satkers]);
+        return view('struktur_proses.struktur',['users'=>$users,'tipe_kuesioner'=>$tipe_kuesioner, 'respondens'=>$responden, 'satkers' => $satkers]);
     }
 
     public function tambahResponden(Request $req)

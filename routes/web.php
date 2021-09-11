@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	// > Penetapan Tujuan
 	Route::get('/penetapan','PenetapanController@viewPenetapan')->name('penetapan');
 	Route::get('/penetapan/penilaian','PenetapanController@penilaianPenetapan')->name('penetapan.penilaian');
+	Route::post('/penetapan/penilaian/create','PenetapanController@penilaianCreate')->name('penetapan.penilaian.create');
 	Route::post('/penetapan/addsasaran','PenetapanController@addSasaran')->name('penetapan.addsasaran');
 	Route::post('/penetapan/addoutput/','PenetapanController@addOutput')->name('penetapan.addoutput');
 	Route::get('/penetapan/addoutput/{sasaran_id}','PenetapanController@getSasaran')->name('penetapan.getsasaran');
@@ -50,7 +51,18 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 
 
 	// > Pencapaian Tujuan
-	Route::get('/tujuan','TujuanController@viewTujuan');
+	Route::get('/pencapaian','TujuanController@viewPencapaian')->name('pencapaian');
+	Route::get('/pencapaian/penilaian','TujuanController@penilaianPencapaian')->name('pencapaian.penilaian');
+	Route::post('/pencapaian/penilaian/create','TujuanController@penilaianCreate')->name('pencapaian.penilaian.create');
+	Route::post('/pencapaian/addsasaran','TujuanController@addSasaran')->name('pencapaian.addsasaran');
+	Route::post('/pencapaian/addoutput/','TujuanController@addOutput')->name('pencapaian.addoutput');
+	Route::get('/pencapaian/addoutput/{sasaran_id}','TujuanController@getSasaran')->name('pencapaian.getsasaran');
+	Route::get('/pencapaian/editoutput/{id}','TujuanController@getOutput')->name('pencapaian.getoutput');
+	Route::post('/pencapaian/editoutput','TujuanController@editOutput')->name('pencapaian.editoutput');
+	Route::get('/pencapaian/editsasaran/{sasaran_id}','TujuanController@getSasaran');
+	Route::post('/pencapaian/editsasaran','TujuanController@editSasaran')->name('pencapaian.editsasaran');
+	Route::delete('/pencapaian/deleteoutput','TujuanController@deleteOutput')->name('pencapaian.deleteoutput');
+	Route::delete('/pencapaian/deletesasaran','TujuanController@deleteSasaran')->name('pencapaian.deletesasaran');
 
 	
 	// ------------------------- Fitur Cari -------------------------

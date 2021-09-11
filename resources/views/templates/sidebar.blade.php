@@ -155,7 +155,7 @@
             @endif
             @if($access->pencapaian_tujuan == 1)
             <li class="nav-item">
-              <a class="nav-link" href="{{ url('/tujuan') }}">
+              <a class="nav-link" href="{{ url('/pencapaian') }}">
               <div>
                 <i class='bx bx-bar-chart-alt-2 nav__icon' ></i>
                 <span class="menu-title">Pencapaian Tujuan</span>
