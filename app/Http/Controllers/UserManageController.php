@@ -134,16 +134,16 @@ class UserManageController extends Controller
                     $access->user = $users->id;
                     $access->kelola_akun = 1;
                     $access->penilaian = 1;
-                    $access->transaksi = 1;
-                    $access->kelola_laporan = 1;
+                    $access->struktur_proses = 1;
+                    $access->pencapaian_tujuan = 1;
                     $access->save();
                 }else{
                     $access = new Acces;
                     $access->user = $users->id;
                     $access->kelola_akun = 0;
                     $access->penilaian = 1;
-                    $access->transaksi = 1;
-                    $access->kelola_laporan = 1;
+                    $access->struktur_proses = 1;
+                    $access->pencapaian_tujuan = 1;
                     $access->save();
                 }
 
@@ -168,16 +168,16 @@ class UserManageController extends Controller
                     $access->user = $users->id;
                     $access->kelola_akun = 1;
                     $access->penilaian = 1;
-                    $access->transaksi = 1;
-                    $access->kelola_laporan = 1;
+                    $access->struktur_proses = 1;
+                    $access->pencapaian_tujuan = 1;
                     $access->save();
                 }else{
                     $access = new Acces;
                     $access->user = $users->id;
                     $access->kelola_akun = 0;
                     $access->penilaian = 1;
-                    $access->transaksi = 1;
-                    $access->kelola_laporan = 1;
+                    $access->struktur_proses = 1;
+                    $access->pencapaian_tujuan = 1;
                     $access->save();
                 }
 
