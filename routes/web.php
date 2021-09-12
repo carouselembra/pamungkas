@@ -56,9 +56,13 @@ Route::group(['middleware' => ['auth', 'checkRole:superadmin,admin,petugas,respo
 	Route::post('/pencapaian/penilaian/create','TujuanController@penilaianCreate')->name('pencapaian.penilaian.create');
 	Route::post('/pencapaian/addsasaran','TujuanController@addSasaran')->name('pencapaian.addsasaran');
 	Route::post('/pencapaian/addoutput/','TujuanController@addOutput')->name('pencapaian.addoutput');
+	Route::post('/pencapaian/addrealisasi/','TujuanController@addRealisasi')->name('pencapaian.addrealisasi');
 	Route::get('/pencapaian/addoutput/{sasaran_id}','TujuanController@getSasaran')->name('pencapaian.getsasaran');
+	Route::get('/pencapaian/getsasaranpenilaian/{sasaran_id}','TujuanController@getSasaranPenilaian')->name('pencapaian.getsasaranpenilaian');
 	Route::get('/pencapaian/editoutput/{id}','TujuanController@getOutput')->name('pencapaian.getoutput');
+	Route::get('/pencapaian/editoutputpenilaian/{id}','TujuanController@getOutputPenilaian')->name('pencapaian.getoutputpenilaian');
 	Route::post('/pencapaian/editoutput','TujuanController@editOutput')->name('pencapaian.editoutput');
+	Route::post('/pencapaian/editoutputrealisasi','TujuanController@editOutputRealisasi')->name('pencapaian.editoutputrealisasi');
 	Route::get('/pencapaian/editsasaran/{sasaran_id}','TujuanController@getSasaran');
 	Route::post('/pencapaian/editsasaran','TujuanController@editSasaran')->name('pencapaian.editsasaran');
 	Route::delete('/pencapaian/deleteoutput','TujuanController@deleteOutput')->name('pencapaian.deleteoutput');

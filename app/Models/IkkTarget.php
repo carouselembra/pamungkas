@@ -18,4 +18,9 @@ class IkkTarget extends Model
     {
         return $this->hasOne(JawabanOutput::class, 'ikk_target_id','id');
     }
+
+    public function realisasiIkkTarget()
+    {
+        return $this->hasOne(RealisasiOutput::class, 'ikk_target_id','id');
+    }
 }

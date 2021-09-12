@@ -5,6 +5,7 @@
     border-top: rgba(255, 255, 255, 0) !important;
 }
 </style>
+<link rel="stylesheet" href="{{ asset('css/transaction/style.css') }}">
 <link rel="stylesheet" href="{{ asset('css/dashboard/style.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css') }}">
 
@@ -32,11 +33,117 @@
         </ul>
     </div>
 </div>
-
-  <form method="POST" action="{{ route('pencapaian.penilaian.create') }}" name="create_penilaian_pencapaian_tujuan" enctype="multipart/form-data">
-    @csrf
     @if (auth()->user()->role == 'superadmin' || auth()->user()->role == 'admin')
-    
+    <div class="row modal-group">
+      <div class="modal fade" id="tambahOutput" tabindex="-1" role="dialog" aria-labelledby="tambahOutputLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form name="tambah_output" action="{{ route('pencapaian.addrealisasi') }}" method="POST">
+              @csrf
+              <div class="modal-header">
+                <h5 class="modal-title" id="tambahRespondenLabel">Tambah Realisasi</h5>
+                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group row">
+                  <div class="col-12">
+                      <div class="form-group">
+                          <label>Sasaran</label>
+                          <input type="text" name="add_output_id" hidden>
+                          <textarea type="text" class="form-control" name="sasaran_output" disabled></textarea>
+                      </div>
+                      <div class="form-group">
+                          <label>IKK</label>
+                          <textarea type="text" class="form-control" name="ikk" placeholder="Masukkan IKK" disabled></textarea>
+                      </div>
+                      <div class="row m-0 p-0">
+                          <div class="form-group col-6 pl-0">
+                              <label>Target</label>
+                              <input type="number" class="form-control" name="target" placeholder="Masukkan target" disabled>
+                          </div>
+                          <div class="form-group col-6 pr-0">
+                              <label>Satuan Target</label>
+                              <input type="text" class="form-control" name="satuan" placeholder="Masukkan satuan" disabled>
+                          </div>
+                      </div>
+                      <div class="row m-0 p-0">
+                        <div class="form-group col-6 pl-0">
+                            <label>Realisasi</label>
+                            <input type="number" class="form-control" name="realisasi" placeholder="Masukkan realisasi">
+                        </div>
+                        <div class="form-group col-6 pr-0">
+                            <label>Satuan Target</label>
+                            <input type="text" class="form-control" name="satuan" placeholder="" disabled>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-simpan"><i class="mdi mdi-content-save"></i> Tambah</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row modal-group">
+      <div class="modal fade" id="editOutput" tabindex="-1" role="dialog" aria-labelledby="editOutputLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form name="edit_output" action="{{ route('pencapaian.editoutputrealisasi') }}" method="POST">
+              @csrf
+              <div class="modal-header">
+                <h5 class="modal-title" id="tambahRespondenLabel">Edit IKK dan Target Output</h5>
+                <button type="button" class="close close-btn" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group row">
+                  <div class="col-12">
+                      <div class="form-group">
+                          <label>Sasaran</label>
+                          <input type="text" name="edit_id" hidden>
+                          <textarea type="text" class="form-control" name="edit_sasaran_output" disabled></textarea>
+                      </div>
+                      <div class="form-group">
+                          <label>IKK</label>
+                          <textarea type="text" class="form-control" name="edit_ikk" placeholder="Masukkan IKK" disabled></textarea>
+                      </div>
+                      <div class="row m-0 p-0">
+                          <div class="form-group col-6 pl-0">
+                              <label>Target</label>
+                              <input type="number" class="form-control" name="edit_target" placeholder="Masukkan target" disabled>
+                          </div>
+                          <div class="form-group col-6 pr-0">
+                              <label>Satuan Target</label>
+                              <input type="text" class="form-control" name="edit_satuan" placeholder="Masukkan satuan" disabled>
+                          </div>
+                      </div>
+                      <div class="row m-0 p-0">
+                        <div class="form-group col-6 pl-0">
+                            <label>Realisasi</label>
+                            <input type="number" class="form-control" name="edit_realisasi" placeholder="Masukkan realisasi">
+                        </div>
+                        <div class="form-group col-6 pr-0">
+                            <label>Satuan Realisasi</label>
+                            <input type="text" class="form-control" name="edit_satuan" placeholder="" disabled>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-simpan"><i class="mdi mdi-content-save"></i> Simpan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     @endif
     
     <div class="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -50,6 +157,7 @@
                         <th> Sasaran </th>
                         <th> IKK </th>
                         <th> Target </th>
+                        <th>  </th>
                       </tr>
                     </thead>
                     <tbody>
@@ -60,7 +168,7 @@
                       ?>
                       @foreach($data as $data)
                       <tr>
-                        <td class="align-top col-4">
+                        <td class="align-top col-5">
                           <div class="d-flex align-items-start flex-column" style="height: 100%;">
                             <div class="mb-auto">
                               <input type="hidden" name="sasaran_id[{{$data->id}}]" value="{{$data->id}}">
@@ -68,28 +176,7 @@
                               <div class="mb-4" style="white-space: normal;">{{ $data->sasaran }}</div>
                             </div>
                             <div class="d-flex justify-content-between {{ $m }}">
-                              <div class="p-0 col-6 mr-4">
-                                <div class="ml-0" style="white-space: normal;"><strong>Apakah Sasaran {{ $number }} Sudah Tepat?</strong></div>
-                                <div class="form-radio ml-1 mt-2 p-0">
-                                  <label class="form-check-label">
-                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_t == 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_t[{{$data->id}}]" id="jawaban_sasaran_t[{{$data->id}}]" value="1"> Ya <i class="input-helper"></i></label>
-                                </div>
-                                <div class="form-radio ml-1 mt-2 p-0">
-                                  <label class="form-check-label">
-                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_t == 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_t[{{$data->id}}]" id="jawaban_sasaran_t[{{$data->id}}]" value="0"> Tidak <i class="input-helper"></i></label>
-                                </div>
-                              </div>
-                              <div class="p-0 col-6">
-                                <div class="ml-0" style="white-space: normal;"><strong>Apakah Sasaran {{ $number }} Sudah Baik?</strong></div>
-                                <div class="form-radio ml-1 mt-2 p-0">
-                                  <label class="form-check-label">
-                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_b == 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_b[{{$data->id}}]" id="jawaban_sasaran_b[{{$data->id}}]" value="1"> Ya <i class="input-helper"></i></label>
-                                </div>
-                                <div class="form-radio ml-1 mt-2 p-0">
-                                  <label class="form-check-label">
-                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_b == 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_b[{{$data->id}}]" id="jawaban_sasaran_b[{{$data->id}}]" value="0"> Tidak <i class="input-helper"></i></label>
-                                </div>
-                              </div>
+                              
                             </div>
                           </div>
                         </td>
@@ -99,48 +186,51 @@
                         @foreach($data->ikkTarget as $data_ikk)
                         @if ($number_ikk <> 1)                        
                         <tr>     
-                          <td class="align-top col-4 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}"></td>
+                          <td class="align-top col-5 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}"></td>
                         @endif
-                          <td class="align-top col-4 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
+                          <td class="align-top col-3 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
                             <input type="hidden" name="output_id[{{$data_ikk->id}}]" value="{{$data_ikk->id}}">
                             <input type="hidden" name="sasaran_id_output[{{$data_ikk->id}}]" value="{{$data->id}}">
-                            <div class="d-flex align-items-start flex-column {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}" style="height: 100%;">
+                            <div class="d-flex align-items-start flex-column style="height: 100%;">
                               <div class="mb-auto">
                                 <h6 class="mb-2">IKK {{ $number_ikk }}</h6>
                                 <div class="mb-4" style="white-space: normal;">{{ $data_ikk->ikk }}</div>
                               </div>
-                              <div class="p-0 {{ $m }}">
-                                <div class="ml-0" style="white-space: normal;"><strong>Apakah IKK {{ $number_ikk }} Sudah Tepat?</strong></div>
-                                <div class="form-radio ml-1 mt-2 p-0">
-                                  <label class="form-check-label">
-                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_ikk == 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_ikk[{{ $data_ikk->id }}]" id="jawaban_ikk[{{ $data_ikk->id }}]" value="1"> Ya <i class="input-helper"></i></label>
-                                </div>
-                                <div class="form-radio ml-1 mt-2 p-0">
-                                  <label class="form-check-label">
-                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_ikk == 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_ikk[{{ $data_ikk->id }}]" id="jawaban_ikk[{{ $data_ikk->id }}]" value="0"> Tidak <i class="input-helper"></i></label>
+                              <div class="p-0 {{ $m }}" style="width: 100%">
+                                <div class="p-3 card-body payment-1">
+                                  <h6 class="card-title">Realisasi</h6>
+                                  <p class="card-text text-muted font-weight-bolder">{{ $data_ikk->realisasi_ikk_target_count == 0 ? "Belum ada realisasi" : $data_ikk->realisasiIkkTarget->realisasi." ".$data_ikk->satuan}} </p>
                                 </div>
                               </div>
                             </div>                              
                           </td>
-                          <td class="align-top col-2 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
+                          <td class="align-top col-3 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
                             <div class="d-flex align-items-start flex-column" style="height: 100%;">
                               <div class="mb-auto">
                                 <h6 class="mb-2">Target {{ $number_ikk }}</h6>
                                 <div class="mb-4" style="white-space: normal;">{{ $data_ikk->target }} {{ $data_ikk->satuan }}</div>
                               </div>
-                              <div class="p-0 {{ $m }}">
-                                <div class="ml-0" style="white-space: normal;"><strong>Apakah Target {{ $number_ikk }} Sudah Tepat?</strong></div>
-                                <div class="form-radio ml-1 mt-2 p-0">
-                                  <label class="form-check-label">
-                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_target == 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_target[{{ $data_ikk->id }}]" id="jawaban_target[{{ $data_ikk->id }}]" value="1"> Ya <i class="input-helper"></i></label>
-                                </div>
-                                <div class="form-radio ml-1 mt-2 p-0">
-                                  <label class="form-check-label">
-                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_target == 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_target[{{ $data_ikk->id }}]" id="jawaban_target[{{ $data_ikk->id }}]" value="0"> Tidak <i class="input-helper"></i></label>
+                              <div class="p-0 {{ $m }}" style="width: 100%">
+                                <div class="p-3 card-body payment-1">
+                                  <h6 class="card-title">Persentase</h6>
+                                  <p class="card-text text-muted font-weight-bolder">{{ $data_ikk->realisasi_ikk_target_count == 0 ? "0%" : ($data_ikk->realisasiIkkTarget->realisasi/$data_ikk->target*100)."%"}}</p>
                                 </div>
                               </div>
                             </div>
                           </td>
+                          <td class="align-top col-1 {{ $number_ikk <> 1 ? 'hide-border-top' : '' }}">
+                            <div class="d-flex justify-content-between">
+                              <button class="btn-output btn-custom mr-3" data-toggle="modal" data-target="#tambahOutput" data-sasaran="{{ $data_ikk->id }}">
+                                  + Realisasi
+                              </button>
+                              <div class="d-flex justify-content-start">
+                                <button type="button" class="btn-edit-output btn btn-secondary pl-2 pr-2" data-toggle="modal" data-target="#editOutput" data-edit="{{ $data_ikk->id }}">
+                                  <strong><i class="fa fa-pencil m-0" aria-hidden="true"></i></strong>
+                                </button>
+                              </div>
+                            </div>
+                          </td>
+                          
                           
                         @if ($number_ikk <> 1)
                           </tr>
@@ -162,12 +252,8 @@
         </div>
     </div>
     <div class="d-flex col-12 justify-content-end" style="margin-top: 1.7em">
-      <button  type="submit" class="btn btn-filter-custom" style="margin-right: 0.8em">Kirim<i class="fa fa-chevron-right"></i></button>
+      <button  type="button" class="btn btn-filter-custom" style="margin-right: 0.8em">Kirim<i class="fa fa-chevron-right"></i></button>
     </div>
-  </form>
-
-
-
 @endsection
 
 
@@ -209,6 +295,14 @@
   );
 @endif
 
+@if ($message = Session::get('gagal_input'))
+  swal(
+      "Gagal!",
+      "{{ $message }}",
+      "error"
+  );
+@endif
+
 @if ($message = Session::get('delete_success'))
   swal(
       "Berhasil!",
@@ -223,11 +317,15 @@ $(document).on('click', '.btn-output', function(){
   var data_sasaran = $(this).data('sasaran');
   $.ajax({
     method: "GET",
-    url: "{{ url('/pencapaian/addoutput') }}/" + data_sasaran,
+    url: "{{ url('/pencapaian/getsasaranpenilaian') }}/" + data_sasaran,
     success:function(response)
     {
-      $('input[name=sasaran_id]').val(response.data.id);
-      $('textarea[name=sasaran_output]').val(response.data.sasaran);        
+      console.log(response);
+      $('input[name=add_output_id]').val(response.data.id);
+      $('textarea[name=sasaran_output]').val(response.data.sasaran.sasaran);
+      $('textarea[name=ikk]').val(response.data.ikk);  
+      $('input[name=target]').val(response.data.target);
+      $('input[name=satuan]').val(response.data.satuan);         
       validator.resetForm();
     }
   });
@@ -239,121 +337,20 @@ $(document).on('click', '.btn-edit-output', function(){
   var data_edit = $(this).data('edit');
   $.ajax({
     method: "GET",
-    url: "{{ url('/pencapaian/editoutput') }}/" + data_edit,
+    url: "{{ url('/pencapaian/editoutputpenilaian') }}/" + data_edit,
     success:function(response)
     {
-    
-      $('input[name=edit_id]').val(response.data.id);
+      $('input[name=edit_id]').val(response.data.realisasi_ikk_target.id);
       $('textarea[name=edit_sasaran_output]').val(response.data.sasaran.sasaran);
       $('textarea[name=edit_ikk]').val(response.data.ikk);
       $('input[name=edit_target]').val(response.data.target);
       $('input[name=edit_satuan]').val(response.data.satuan);
+      $('input[name=edit_realisasi]').val(response.data.realisasi_ikk_target.realisasi);
       validator.resetForm();
     }
   });
 });
 
-// edit Sasaran
-$(document).on('click', '.btn-edit-sasaran', function(){
-  
-  var data_edit = $(this).data('edit');
-  $.ajax({
-    method: "GET",
-    url: "{{ url('/pencapaian/editsasaran') }}/" + data_edit,
-    success:function(response)
-    {
-      console.log(response)
-      $('input[name=edit_sasaran_id]').val(response.data.id);
-      $('textarea[name=edit_sasaran]').val(response.data.sasaran);
-      validator.resetForm();
-    }
-  });
-});
-
-// delete output
-$(document).on('click', '.btn-delete', function(e){
-  e.preventDefault();
-  var data_delete = $(this).attr('data-delete');
-  var data_token = $(this).attr('data-token');
-  swal({
-    title: "Apa Anda Yakin?",
-    text: "IKK dan Target akan terhapus, klik oke untuk melanjutkan",
-    icon: "warning",
-    buttons: true,
-    dangerMode: true,
-  })
-  .then((willDelete) => {
-    if (willDelete) {
-      
-      $.ajax({
-        url:'{{ route("pencapaian.deleteoutput") }}',
-        type:'DELETE',
-        data:{
-          ids:data_delete,
-          _token:data_token
-        },
-        success:function(data){
-          console.log(data);
-          swal(
-            {
-              title: "Berhasil",
-              text: "IKK dan Target berhasil dihapus",
-              icon: "success",
-            }).then(
-              $('tbody').html(data)
-            )
-        }
-      })
-    }
-  });
-});
-
-$(document).on('click', '#chkCheckAll', function(){
-      $('.checkBoxClass').prop('checked',$(this).prop('checked'));
-});
-
-$(document).on('click', '#deleteAllSelectedSasaran', function(e){
-  e.preventDefault();
-  var allids = [];
-  $('input:checkbox[name=ids]:checked').each(function(){
-    allids.push($(this).val())
-  });
-  if(allids == ""){
-    swal("Gagal!",
-    "Kamu belum memilih sasaran yang akan dihapus",
-    "error");
-  } else {
-    swal({
-      title: "Apa Anda Yakin?",
-      text: "Sasaran akan terhapus, klik oke untuk melanjutkan",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    })
-    .then((willDelete) => {
-      if (willDelete) {
-        $.ajax({
-          url:'{{ route("pencapaian.deletesasaran") }}',
-          type:'DELETE',
-          data:{
-            ids:allids,
-            _token:$('input[name=_token]').val()
-          },
-          success:function(data){
-            swal(
-              {
-                title: "Berhasil",
-                text: "Sasaran berhasil dihapus",
-                icon: "success",
-              }).then(
-                $('tbody').html(data)
-              )
-          }
-        })
-      }
-    });
-  };
-});
 
 </script>
 @endsection

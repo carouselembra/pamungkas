@@ -10,6 +10,7 @@ use App\Models\IkkTarget;
 use Illuminate\Http\Request;
 use App\Models\JawabanOutput;
 use App\Models\JawabanSasaran;
+use App\Models\RealisasiOutput;
 
 class TujuanController extends Controller
 {
@@ -35,7 +36,7 @@ class TujuanController extends Controller
         $tahun_now = date('Y')-1;
 
         $data = Sasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->with(['ikkTarget' => function($q){
-            $q->with('jawabanIkkTarget');}])->with('jawabanSasaran')->get();
+            $q->with('realisasiIkkTarget')->withCount('realisasiIkkTarget');}])->get();
         
 
         return view('pencapaian_tujuan.penilaian', compact('data'));
@@ -98,10 +99,51 @@ class TujuanController extends Controller
 
     }
 
+
+    public function addRealisasi(Request $req)
+    {
+        $user_login = auth()->user()->id;
+        $user_satker = auth()->user()->id_satker;
+        $tahun_now = date('Y')-1;
+
+        $cek_realisasi = RealisasiOutput::where('ikk_target_id',$req->add_output_id)->count();
+    
+        if($cek_realisasi == 0){
+
+            if(!empty($req->realisasi)){
+                $ikk = new RealisasiOutput;
+                $ikk->tahun = $tahun_now;
+                $ikk->satker_id = $user_satker;
+                $ikk->users_id = $user_login;
+                $ikk->ikk_target_id = $req->add_output_id;
+                $ikk->realisasi = $req->realisasi;
+                $ikk->save();
+                
+                Session::flash('berhasil_input', 'IKK dan Target Output berhasil ditambahkan');
+            }else{
+                Session::flash('gagal_input', 'Anda tidak menginputkan realisasi');
+            }  
+        }else{
+            Session::flash('gagal_input', 'Anda telah menginput realisasi');
+        }
+
+       return back();
+
+    }
+
     public function getSasaran($sasaran_id)
     {
         
         $data = Sasaran::find($sasaran_id);
+
+        return response()->json(['data' => $data]);
+       
+    }
+
+    public function getSasaranPenilaian($sasaran_id)
+    {
+        
+        $data = IkkTarget::where('id',$sasaran_id)->with('sasaran')->first();
 
         return response()->json(['data' => $data]);
        
@@ -125,6 +167,14 @@ class TujuanController extends Controller
        
     }
 
+    public function getOutputPenilaian($id)
+    {
+        $data = IkkTarget::where('id',$id)->with('sasaran')->with('realisasiIkkTarget')->first();
+                
+        return response()->json(['data' => $data]);
+       
+    }
+
     public function editOutput(Request $req)
     {
         $ikk = IkkTarget::find($req->edit_id);
@@ -134,6 +184,16 @@ class TujuanController extends Controller
         $ikk->save();
 
         Session::flash('berhasil_input', 'Ikk dan Target berhasil diubah');
+        return back();
+    }
+
+    public function editOutputRealisasi(Request $req)
+    {
+        $ikk = RealisasiOutput::find($req->edit_id);
+        $ikk->realisasi = $req->edit_realisasi;
+        $ikk->save();
+
+        Session::flash('berhasil_input', 'Realisasi berhasil diubah');
         return back();
     }
 
