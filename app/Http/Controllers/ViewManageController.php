@@ -71,11 +71,11 @@ class ViewManageController extends Controller
         $tahun_lalu = date('Y')-1;
 
         $data_sasaran = Sasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->get();
-        $data_sasaran_t = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where(function($q){$q->where('j_sasaran_t',1)->orWhere('j_sasaran_t',0);})->get();
-        $data_sasaran_b = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where(function($q){$q->where('j_sasaran_b',1)->orWhere('j_sasaran_b',0);})->get();
+        $data_sasaran_t = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_sasaran_t')->get();
+        $data_sasaran_b = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_sasaran_b')->get();
         $data_ikk_target = IkkTarget::where('tahun',$tahun_now)->where('satker_id',$user_satker)->get();
-        $data_ikk_target_j_ikk = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where(function($q){$q->where('j_ikk',1)->orWhere('j_ikk',0);})->get();
-        $data_ikk_target_j_target = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where(function($q){$q->where('j_target',1)->orWhere('j_target',0);})->get();
+        $data_ikk_target_j_ikk = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_ikk')->get();
+        $data_ikk_target_j_target = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_target')->get();
         
         $data_ikk_target_lalu = IkkTarget::where('tahun',$tahun_lalu)->where('satker_id',$user_satker)->get();
         $data_ikk_target_realisasi = RealisasiOutput::where('tahun',$tahun_lalu)->where('satker_id',$user_satker)->whereNotNull('realisasi')->get();
