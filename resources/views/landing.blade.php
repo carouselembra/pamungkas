@@ -16,17 +16,66 @@
     <link rel="stylesheet" href="{{ asset('plugins/css/sweetalert.css') }}">
     <link rel="stylesheet" href="{{ asset('css/login/style.css') }}">
     <link rel="shortcut icon" href="{{ asset('icons/favicon.png') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/dashboard/style.css') }}"><link rel="stylesheet" href="{{ asset('assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css') }}">
     <!-- End-CSS -->
+    <style>
+      .margin-img{
+        margin-left:-10%; 
+        margin-right:5%; 
+        max-width: 60%; 
+        height: auto;
 
+        -webkit-transition: all 0.2s linear;
+        -moz-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
+      }
+      
+      .margin-img-landing{
+        margin-left:5%; 
+        margin-right:-10%; 
+        max-width: 60%; 
+        height: auto;
+      }
+    </style>
+    
+    {{-- <img class="" src="{{ asset('icons/hero/logo.svg') }}" alt="logo" /> --}}
   </head>
   <body>
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
+        <div class="pl-5 pr-5">
+          <nav class="navbar navbar-expand pl-5 pr-5 navbar-light bg-light">
+            <div class="collapse navbar-collapse" id="navbarText">
+              <img class="" src="{{ asset('icons/hero/logo.svg') }}" alt="logo" />
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Contact</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
         <div class="content-wrapper d-flex justify-content-center align-items-center auth login-page theme-one">
-          <div class="row w-100">
-            <div class="col-lg-4 mx-auto">
+          <div class="row" id="landing">
+            <div class="col-lg-12 mr-5">
+             <h1 class="font-weight-bold" style="font-size: 80px">New SPIP</h1>
+             <p style="font-size: 20px">Monitoring Berkelanjutan Penilaian Mandiri Maturitas SPIP  </br>Unit Kerja Eselon II</p>
+             <button class="btn btn-simpan btn-to-login btn-lg" style=" border-radius:15px">Klik untuk login</button>
+            </div>
+          </div>
+          <img id="imgLanding" class="d-none d-xl-block margin-img-landing" src="{{ asset('icons/icon_login.svg') }}" alt="logo" />
+          <div class="row d-none" id="loginLanding">
+            <div class="col-lg-12">
               <div class="auto-form-wrapper">
                 @if($users != 0)
+                <h2 class="h3 mb-4 font-weight-bold">Login to your account</h2>
                 <form action="{{ url('/verify_login') }}" method="post" name="login_form">
                   @csrf
                   <div class="form-group">
@@ -48,7 +97,7 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <button class="btn btn-primary submit-btn btn-block">Masuk</button>
+                    <button type="submit" class="btn btn-simpan btn-lg" style="width: 100%; border-radius:15px">Login now</button>
                   </div>
                 </form>
                 @else
@@ -96,7 +145,7 @@
                 </form>
                 @endif
               </div>
-              <p class="mt-3 footer-text text-center">copyright © 2021 Podjok 28 - BPKP Kepri</p>
+              <p class="mt-3 footer-text text-center" style="color: grey">copyright © 2021 Podjok 28 - BPKP Kepri</p>
             </div>
           </div>
         </div>
@@ -127,6 +176,14 @@
             "error"
         );
       @endif
+      $(document).on('click', '.btn-to-login', function(){
+          
+          $('#landing').addClass('d-none');
+          $('#imgLanding').removeClass('margin-img-landing');
+          $('#imgLanding').addClass('margin-img');
+          $('#loginLanding').removeClass('d-none');
+      });
+
     </script>
     <!-- End-Javascript -->
 

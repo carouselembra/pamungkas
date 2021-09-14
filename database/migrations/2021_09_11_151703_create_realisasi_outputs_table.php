@@ -19,7 +19,7 @@ class CreateRealisasiOutputsTable extends Migration
             $table->foreignId('satker_id');
             $table->foreignId('users_id');
             $table->foreignId('ikk_target_id')->references('id')->on('ikk_targets')->onDelete('cascade');
-            $table->string('realisasi');
+            $table->integer('realisasi')->nullable();
             $table->timestamps();
         });
     }

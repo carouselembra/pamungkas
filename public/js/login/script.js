@@ -45,7 +45,7 @@ $(function() {
 $(function() {
   $("form[name='login_form']").validate({
     rules: {
-      username: {
+      email: {
         required: true,
         minlength: 4
       },
@@ -55,7 +55,7 @@ $(function() {
       }
     },
     messages: {
-      username: "<i class='mdi mdi-close-circle-outline'></i>",
+      email: "<i class='mdi mdi-close-circle-outline'></i>",
       password: "<i class='mdi mdi-close-circle-outline'></i>"
     },
     success: function(element) {

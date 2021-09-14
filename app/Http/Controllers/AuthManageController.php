@@ -15,7 +15,7 @@ class AuthManageController extends Controller
     	$users = User::all()
     	->count();
 
-    	return view('login', compact('users'));
+    	return view('landing', compact('users'));
     }
 
     // Verify Login
@@ -34,6 +34,6 @@ class AuthManageController extends Controller
     {
     	Auth::logout();
 
-    	return redirect('/login');
+    	return redirect('/');
     }
 }

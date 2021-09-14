@@ -14,6 +14,14 @@ html{
 	background: linear-gradient(276.79deg, #323484 9.6%, #299EE8 89.3%);
 }
 
+.bg-gradient-blue-soft{
+	background: linear-gradient(276.59deg, #2C72DC 7.34%, #71A3EE 86.47%);
+}
+
+.bg-gradient-red-soft{
+	background: linear-gradient(103.88deg, #F3A893 9.65%, #FE805C 97.82%);
+}
+
 .bg-blue{
 	background-color: #020aab;
 }

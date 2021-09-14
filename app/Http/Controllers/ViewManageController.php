@@ -5,8 +5,13 @@ namespace App\Http\Controllers;
 use Session;
 use Carbon\Carbon;
 use App\Models\Market;
+use App\Models\Sasaran;
+use App\Models\IkkTarget;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\JawabanOutput;
+use App\Models\JawabanSasaran;
+use App\Models\RealisasiOutput;
 
 class ViewManageController extends Controller
 {
@@ -59,7 +64,42 @@ class ViewManageController extends Controller
         $max_date = Transaction::max('created_at');
         $market = Market::first();
 
-    	return view('dashboard', compact('kd_transaction', 'incomes', 'incomes_daily', 'customers_daily', 'all_incomes', 'min_date', 'max_date', 'market'));
+        $role_login = auth()->user()->role;
+        $user_login = auth()->user()->id;
+        $user_satker = auth()->user()->id_satker;
+        $tahun_now = date('Y');
+        $tahun_lalu = date('Y')-1;
+
+        $data_sasaran = Sasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->get();
+        $data_sasaran_t = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where(function($q){$q->where('j_sasaran_t',1)->orWhere('j_sasaran_t',0);})->get();
+        $data_sasaran_b = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where(function($q){$q->where('j_sasaran_b',1)->orWhere('j_sasaran_b',0);})->get();
+        $data_ikk_target = IkkTarget::where('tahun',$tahun_now)->where('satker_id',$user_satker)->get();
+        $data_ikk_target_j_ikk = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where(function($q){$q->where('j_ikk',1)->orWhere('j_ikk',0);})->get();
+        $data_ikk_target_j_target = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where(function($q){$q->where('j_target',1)->orWhere('j_target',0);})->get();
+        
+        $data_ikk_target_lalu = IkkTarget::where('tahun',$tahun_lalu)->where('satker_id',$user_satker)->get();
+        $data_ikk_target_realisasi = RealisasiOutput::where('tahun',$tahun_lalu)->where('satker_id',$user_satker)->whereNotNull('realisasi')->get();
+
+        $sasaran = count($data_sasaran);
+        $sasaran_t = count($data_sasaran_t);
+        $sasaran_b = count($data_sasaran_b);
+        $ikk_target = count($data_ikk_target);
+        $ikk_target_j_ikk = count($data_ikk_target_j_ikk);
+        $ikk_target_j_target = count($data_ikk_target_j_target);
+
+        $ikk_target_lalu = count($data_ikk_target_lalu);
+        $ikk_target_realisasi = count($data_ikk_target_realisasi);
+
+        $penetapan = round(($sasaran_t+$sasaran_b+$ikk_target_j_ikk+$ikk_target_j_target)/($sasaran*2+$ikk_target*2)*100,0);
+        $penilaian = round($ikk_target_realisasi/$ikk_target_lalu*100);
+
+        if($role_login=="superadmin"){
+            return view('dashboard', compact('kd_transaction', 'incomes', 'incomes_daily', 'customers_daily', 'all_incomes', 'min_date', 'max_date', 'market'));
+        }else{
+            return view('dashboard_satker',compact('penetapan','penilaian'));
+            // return $data_ikk_target_realisasi;
+        }
+    	
     }
 
     // Filter Chart Dashboard

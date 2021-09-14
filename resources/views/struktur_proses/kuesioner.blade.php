@@ -65,23 +65,23 @@
                             <input type="hidden" name="mapping_id[{{$kriteria->id}}]" value="{{$mapping_id}}">
                             <div class="form-radio ml-5 p-0">
                                 <label class="form-check-label">
-                                <input required type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="A"> {{$kriteria->kriteria_a}} <i class="input-helper"></i></label>
+                                <input required type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="5"> {{$kriteria->kriteria_a}} <i class="input-helper"></i></label>
                             </div>
                             <div class="form-radio ml-5">
                                 <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="B" > {{$kriteria->kriteria_b}} <i class="input-helper"></i></label>
+                                <input type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="4" > {{$kriteria->kriteria_b}} <i class="input-helper"></i></label>
                             </div>
                             <div class="form-radio ml-5">
                                 <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="C" > {{$kriteria->kriteria_c}} <i class="input-helper"></i></label>
+                                <input type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="3" > {{$kriteria->kriteria_c}} <i class="input-helper"></i></label>
                             </div>
                             <div class="form-radio ml-5">
                                 <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="D" > {{$kriteria->kriteria_d}} <i class="input-helper"></i></label>
+                                <input type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="2" > {{$kriteria->kriteria_d}} <i class="input-helper"></i></label>
                             </div>
                             <div class="form-radio ml-5">
                                 <label class="form-check-label">
-                                <input type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="E" > {{$kriteria->kriteria_e}} <i class="input-helper"></i></label>
+                                <input type="radio" class="form-check-input" name="jawaban[{{$kriteria->id}}]" id="jawaban[{{$kriteria->id}}]" value="1" > {{$kriteria->kriteria_e}} <i class="input-helper"></i></label>
                             </div>
                             </div>
                             

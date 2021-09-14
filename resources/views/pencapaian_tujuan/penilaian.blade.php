@@ -213,7 +213,7 @@
                               <div class="p-0 {{ $m }}" style="width: 100%">
                                 <div class="p-3 card-body payment-1">
                                   <h6 class="card-title">Persentase</h6>
-                                  <p class="card-text text-muted font-weight-bolder">{{ $data_ikk->realisasi_ikk_target_count == 0 ? "0%" : ($data_ikk->realisasiIkkTarget->realisasi/$data_ikk->target*100)."%"}}</p>
+                                  <p class="card-text text-muted font-weight-bolder">{{ $data_ikk->realisasi_ikk_target_count == 0 ? "0%" : (round($data_ikk->realisasiIkkTarget->realisasi/$data_ikk->target*100,2))."%"}}</p>
                                 </div>
                               </div>
                             </div>

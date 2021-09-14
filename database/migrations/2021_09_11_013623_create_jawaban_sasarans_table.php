@@ -19,8 +19,8 @@ class CreateJawabanSasaransTable extends Migration
             $table->foreignId('satker_id');
             $table->foreignId('users_id');
             $table->foreignId('sasaran_id')->references('id')->on('sasarans')->onDelete('cascade');
-            $table->integer('j_sasaran_t');
-            $table->integer('j_sasaran_b');
+            $table->integer('j_sasaran_t')->nullable();
+            $table->integer('j_sasaran_b')->nullable();
             $table->timestamps();
         });
     }

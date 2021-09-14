@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/dashboard');
-});
+Route::get('/', 'AuthManageController@viewLogin')->name('landing');
 
 Route::get('/login', 'AuthManageController@viewLogin')->name('login');
 Route::post('/verify_login', 'AuthManageController@verifyLogin');

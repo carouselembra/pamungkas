@@ -21,8 +21,8 @@ class CreateJawabanOutputsTable extends Migration
             $table->foreignId('sasaran_id')->references('id')->on('sasarans')->onDelete('cascade');
             $table->foreignId('ikk_target_id')->references('id')->on('ikk_targets')->onDelete('cascade');
             $table->foreignId('j_sasaran_id')->references('id')->on('jawaban_sasarans')->onDelete('cascade');
-            $table->integer('j_ikk');
-            $table->integer('j_target');
+            $table->integer('j_ikk')->nullable();
+            $table->integer('j_target')->nullable();
             $table->timestamps();
         });
     }

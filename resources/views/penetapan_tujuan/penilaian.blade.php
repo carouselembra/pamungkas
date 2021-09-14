@@ -72,22 +72,22 @@
                                 <div class="ml-0" style="white-space: normal;"><strong>Apakah Sasaran {{ $number }} Sudah Tepat?</strong></div>
                                 <div class="form-radio ml-1 mt-2 p-0">
                                   <label class="form-check-label">
-                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_t == 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_t[{{$data->id}}]" id="jawaban_sasaran_t[{{$data->id}}]" value="1"> Ya <i class="input-helper"></i></label>
+                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_t === 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_t[{{$data->id}}]" id="jawaban_sasaran_t[{{$data->id}}]" value="1"> Ya <i class="input-helper"></i></label>
                                 </div>
                                 <div class="form-radio ml-1 mt-2 p-0">
                                   <label class="form-check-label">
-                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_t == 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_t[{{$data->id}}]" id="jawaban_sasaran_t[{{$data->id}}]" value="0"> Tidak <i class="input-helper"></i></label>
+                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_t === 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_t[{{$data->id}}]" id="jawaban_sasaran_t[{{$data->id}}]" value="0"> Tidak <i class="input-helper"></i></label>
                                 </div>
                               </div>
                               <div class="p-0 col-6">
                                 <div class="ml-0" style="white-space: normal;"><strong>Apakah Sasaran {{ $number }} Sudah Baik?</strong></div>
                                 <div class="form-radio ml-1 mt-2 p-0">
                                   <label class="form-check-label">
-                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_b == 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_b[{{$data->id}}]" id="jawaban_sasaran_b[{{$data->id}}]" value="1"> Ya <i class="input-helper"></i></label>
+                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_b === 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_b[{{$data->id}}]" id="jawaban_sasaran_b[{{$data->id}}]" value="1"> Ya <i class="input-helper"></i></label>
                                 </div>
                                 <div class="form-radio ml-1 mt-2 p-0">
                                   <label class="form-check-label">
-                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_b == 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_b[{{$data->id}}]" id="jawaban_sasaran_b[{{$data->id}}]" value="0"> Tidak <i class="input-helper"></i></label>
+                                  <input {{ ($data->jawabanSasaran != null) ? (($data->jawabanSasaran->j_sasaran_b === 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_sasaran_b[{{$data->id}}]" id="jawaban_sasaran_b[{{$data->id}}]" value="0"> Tidak <i class="input-helper"></i></label>
                                 </div>
                               </div>
                             </div>
@@ -113,11 +113,11 @@
                                 <div class="ml-0" style="white-space: normal;"><strong>Apakah IKK {{ $number_ikk }} Sudah Tepat?</strong></div>
                                 <div class="form-radio ml-1 mt-2 p-0">
                                   <label class="form-check-label">
-                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_ikk == 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_ikk[{{ $data_ikk->id }}]" id="jawaban_ikk[{{ $data_ikk->id }}]" value="1"> Ya <i class="input-helper"></i></label>
+                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_ikk === 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_ikk[{{ $data_ikk->id }}]" id="jawaban_ikk[{{ $data_ikk->id }}]" value="1"> Ya <i class="input-helper"></i></label>
                                 </div>
                                 <div class="form-radio ml-1 mt-2 p-0">
                                   <label class="form-check-label">
-                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_ikk == 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_ikk[{{ $data_ikk->id }}]" id="jawaban_ikk[{{ $data_ikk->id }}]" value="0"> Tidak <i class="input-helper"></i></label>
+                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_ikk === 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_ikk[{{ $data_ikk->id }}]" id="jawaban_ikk[{{ $data_ikk->id }}]" value="0"> Tidak <i class="input-helper"></i></label>
                                 </div>
                               </div>
                             </div>                              
@@ -132,11 +132,11 @@
                                 <div class="ml-0" style="white-space: normal;"><strong>Apakah Target {{ $number_ikk }} Sudah Tepat?</strong></div>
                                 <div class="form-radio ml-1 mt-2 p-0">
                                   <label class="form-check-label">
-                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_target == 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_target[{{ $data_ikk->id }}]" id="jawaban_target[{{ $data_ikk->id }}]" value="1"> Ya <i class="input-helper"></i></label>
+                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_target === 1) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_target[{{ $data_ikk->id }}]" id="jawaban_target[{{ $data_ikk->id }}]" value="1"> Ya <i class="input-helper"></i></label>
                                 </div>
                                 <div class="form-radio ml-1 mt-2 p-0">
                                   <label class="form-check-label">
-                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_target == 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_target[{{ $data_ikk->id }}]" id="jawaban_target[{{ $data_ikk->id }}]" value="0"> Tidak <i class="input-helper"></i></label>
+                                  <input {{ ($data_ikk->jawabanIkkTarget != null) ? (($data_ikk->jawabanIkkTarget->j_target === 0) ? 'checked' :'') :'' }} required type="radio" class="form-check-input" name="jawaban_target[{{ $data_ikk->id }}]" id="jawaban_target[{{ $data_ikk->id }}]" value="0"> Tidak <i class="input-helper"></i></label>
                                 </div>
                               </div>
                             </div>

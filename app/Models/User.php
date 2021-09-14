@@ -51,4 +51,10 @@ class User extends Authenticatable
         return $this->hasMany(Mapping_responden::class, 'users_id');
 
     }
+
+    public function satker()
+    {
+        return $this->belongsTo(Satker::class, 'id_satker');
+
+    }
 }
