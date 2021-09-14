@@ -73,23 +73,23 @@
             <h3 class="font-weight-semibold mb-3 text-white text-center">Struktur & Proses</h3>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Lingkungan Pengendalian</h5>
-              <h5 class="font-weight mb-0 text-white">Level 3</p>
+              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_1 }}</p>
             </div>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Penilaian Risiko</h5>
-              <h5 class="font-weight mb-0 text-white">Level 3</p>
+              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_2 }}</p>
             </div>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Kegiatan Pengendalian</h5>
-              <h5 class="font-weight mb-0 text-white">Level 3</p>
+              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_3 }}</p>
             </div>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Informasi & Komunikasi</h5>
-              <h5 class="font-weight mb-0 text-white">Level 3</p>
+              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_4 }}</p>
             </div>
             <div class="d-flex justify-content-between">
               <h5 class="font-weight mb-0 text-white">Monitoring</h5>
-              <h5 class="font-weight mb-0 text-white">Level 3</p>
+              <h5 class="font-weight mb-0 text-white">Level {{ $s_p_5 }}</p>
             </div>
             <p class="mb-0 text-white">2021</p>
           </div>
@@ -109,19 +109,19 @@
             <tbody>
               <tr>
                 <td> Sasaran Kegiatan belum dinilai </td>
-                <td class="col-1"> <label class="badge badge-warning">2</label> </td>
+                <td class="col-1"> <label class="badge badge-warning">{{ $a_sasaran }}</label> </td>
               </tr>
               <tr>
                 <td> Indikator Kinerja Kegiatan belum dinilai </td>
-                <td class="col-1"> <label class="badge badge-warning">9</label> </td>
+                <td class="col-1"> <label class="badge badge-warning">{{ $a_ikk }}</label> </td>
               </tr>
               <tr>
                 <td> Target Kegiatan belum dinilai </td>
-                <td class="col-1"> <label class="badge badge-warning">12</label> </td>
+                <td class="col-1"> <label class="badge badge-warning">{{ $a_target }}</label> </td>
               </tr>
               <tr>
                 <td> Pegawai belum mengisi kuesioner </td>
-                <td class="col-1"> <label class="badge badge-warning">13</label> </td>
+                <td class="col-1"> <label class="badge badge-warning">{{ $res_belum }}</label> </td>
               </tr>
             </tbody>
           </table>

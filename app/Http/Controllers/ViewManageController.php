@@ -12,6 +12,8 @@ use Illuminate\Http\Request;
 use App\Models\JawabanOutput;
 use App\Models\JawabanSasaran;
 use App\Models\RealisasiOutput;
+use App\Models\JawabanStrukturProses;
+use App\Models\User;
 
 class ViewManageController extends Controller
 {
@@ -73,6 +75,7 @@ class ViewManageController extends Controller
         $data_sasaran = Sasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->get();
         $data_sasaran_t = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_sasaran_t')->get();
         $data_sasaran_b = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_sasaran_b')->get();
+        $data_sasaran_n = JawabanSasaran::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_sasaran_t')->WhereNotNull('j_sasaran_b')->get();
         $data_ikk_target = IkkTarget::where('tahun',$tahun_now)->where('satker_id',$user_satker)->get();
         $data_ikk_target_j_ikk = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_ikk')->get();
         $data_ikk_target_j_target = JawabanOutput::where('tahun',$tahun_now)->where('satker_id',$user_satker)->whereNotNull('j_target')->get();
@@ -83,6 +86,7 @@ class ViewManageController extends Controller
         $sasaran = count($data_sasaran);
         $sasaran_t = count($data_sasaran_t);
         $sasaran_b = count($data_sasaran_b);
+        $sasaran_n = count($data_sasaran_n);
         $ikk_target = count($data_ikk_target);
         $ikk_target_j_ikk = count($data_ikk_target_j_ikk);
         $ikk_target_j_target = count($data_ikk_target_j_target);
@@ -93,11 +97,52 @@ class ViewManageController extends Controller
         $penetapan = round(($sasaran_t+$sasaran_b+$ikk_target_j_ikk+$ikk_target_j_target)/($sasaran*2+$ikk_target*2)*100,0);
         $penilaian = round($ikk_target_realisasi/$ikk_target_lalu*100);
 
+        // Atensi
+        $a_sasaran = $sasaran-$sasaran_n;
+        $a_ikk = $ikk_target-$ikk_target_j_ikk;
+        $a_target = $ikk_target-$ikk_target_j_target;
+
+        // Struktur Proses
+
+        $level_capaian = function ($q) use($tahun_now,$user_satker){
+            return JawabanStrukturProses::where('tahun',$tahun_now)->where('satker_id',$user_satker)->where('unsur_id',$q)->select('jawaban')->get();
+        };
+
+        $s_p_1 = round($level_capaian(1)->avg('jawaban'),0);
+        $s_p_2 = round($level_capaian(2)->avg('jawaban'),0);
+        $s_p_3 = round($level_capaian(3)->avg('jawaban'),0);
+        $s_p_4 = round($level_capaian(4)->avg('jawaban'),0);
+        $s_p_5 = round($level_capaian(5)->avg('jawaban'),0);
+
+        $user= User::where('id_satker',$user_satker)->with(['mappings' => function($q){
+            $q->withCount('jawaban');
+        }])->get();
+
+        
+        foreach ($user as $jawaban){
+            if($jawaban->mappings != '[]'){
+                $data = function() use($jawaban){
+                  foreach ($jawaban->mappings as $mapping){
+                        $hasil[]=$mapping->jawaban_count;
+                    }
+                    return $hasil;
+                };
+
+                if (in_array(0,$data())){
+                    $responden_belum_isi[]=1;
+                }
+                
+                $total_responden[]=['pengisian' => $data()];
+            }
+        }
+
+        $res_belum = count($responden_belum_isi);
+
         if($role_login=="superadmin"){
             return view('dashboard', compact('kd_transaction', 'incomes', 'incomes_daily', 'customers_daily', 'all_incomes', 'min_date', 'max_date', 'market'));
         }else{
-            return view('dashboard_satker',compact('penetapan','penilaian'));
-            // return $data_ikk_target_realisasi;
+            return view('dashboard_satker',compact('penetapan','penilaian', 'a_sasaran','a_ikk','a_target','s_p_1','s_p_2','s_p_3','s_p_4','s_p_5','res_belum'));
+            // return count($responden_belum_isi);
         }
     	
     }
