@@ -45,7 +45,7 @@
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
         <div class="pl-5 pr-5">
-          <nav class="navbar navbar-expand pl-5 pr-5 navbar-light bg-light">
+          <nav class="navbar navbar-expand pl-5 pr-5 navbar-light bg-light" style="min-height: 10vh">
             <div class="collapse navbar-collapse" id="navbarText">
               <img class="" src="{{ asset('icons/hero/logo.svg') }}" alt="logo" />
               <ul class="navbar-nav ml-auto">
@@ -64,7 +64,7 @@
         </div>
         <div class="content-wrapper d-flex justify-content-center align-items-center auth login-page theme-one">
           <div class="row" id="landing">
-            <div class="col-lg-12 mr-5">
+            <div class="col-lg-12 mr-5 ml-4">
              <h1 class="font-weight-bold" style="font-size: 80px">New SPIP</h1>
              <p style="font-size: 20px">Monitoring Berkelanjutan Penilaian Mandiri Maturitas SPIP  </br>Unit Kerja Eselon II</p>
              <button class="btn btn-simpan btn-to-login btn-lg" style=" border-radius:15px">Klik untuk login</button>

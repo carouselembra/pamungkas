@@ -10706,7 +10706,7 @@ ul {
   padding-right: 0; }
 
 .auth{
-  min-height: 100vh; }
+  min-height: 90vh; }
   .auth.auth-bg-1 {
     background: url("../../images/auth/login_1.jpg");
     background-size: cover; }
