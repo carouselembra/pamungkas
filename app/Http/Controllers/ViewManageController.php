@@ -118,7 +118,7 @@ class ViewManageController extends Controller
             $q->withCount('jawaban');
         }])->get();
 
-        
+        $responden_belum_isi = [];
         foreach ($user as $jawaban){
             if($jawaban->mappings != '[]'){
                 $data = function() use($jawaban){
