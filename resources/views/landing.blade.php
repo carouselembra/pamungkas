@@ -47,7 +47,7 @@
         <div class="pl-5 pr-5">
           <nav class="navbar navbar-expand pl-5 pr-5 navbar-light bg-light" style="min-height: 10vh">
             <div class="collapse navbar-collapse" id="navbarText">
-              <img class="" src="{{ asset('icons/hero/logo.svg') }}" alt="logo" />
+              <a href="/"><img class="" src="{{ asset('icons/hero/logo.svg') }}" alt="logo" /></a>
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                   <a class="nav-link" href="#">About <span class="sr-only">(current)</span></a>
