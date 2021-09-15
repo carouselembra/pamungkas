@@ -80,7 +80,6 @@ class ViewManageController extends Controller
 
         //status struktur & proses
         $responden = Mapping_responden::all('satker_id','kuesioner_id');
-        $responden_t4 = Mapping_responden::all('satker_id','kuesioner_id')->where('satker_id',$user_satker)->where('kuesioner_id',4);
         $jawabanSP = JawabanStrukturProses::all('satker_id','jawaban');
 
 
